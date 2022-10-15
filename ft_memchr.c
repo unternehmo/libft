@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 13:48:25 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/15 10:15:54 by tkubsch          ###   ########.fr       */
+/*   Created: 2022/10/15 14:07:07 by tkubsch           #+#    #+#             */
+/*   Updated: 2022/10/15 14:34:33 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	size_t	i;
+	char	*casted;
 
 	i = 0;
-	while ((s[i] != '\0') && (s[i] != c))
-	{
+	casted = ((char *) s);
+	while ((casted[i] != '\0') && (i < n - 1) && (casted[i] != c))
 		i++;
-	}
-	if (s[i] == c)
-		return ((char *) &s[i]);
-	return ((char *) 0);
+	if (casted[i] == c)
+		return ((char *) &casted[i]);
+	return (NULL);
 }
