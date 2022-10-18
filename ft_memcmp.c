@@ -6,7 +6,7 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:36:37 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/15 15:01:15 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:16:10 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (0);
-	while (s1_casted[i] != '\0' && s2_casted[i] != '\0' && i < n - 1)
-	{
-		if (s1_casted[i] != s2_casted[i])
-			return (((unsigned char) s1_casted[i])
-				- ((unsigned char) s2_casted[i]));
+	while (s1_casted[i] == s2_casted[i] && i < n - 1)
 		i++;
-	}
 	return (((unsigned char) s1_casted[i]) - ((unsigned char) s2_casted[i]));
 }

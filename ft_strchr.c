@@ -6,7 +6,7 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:48:25 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/15 10:15:54 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:52:14 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,9 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while ((s[i] != '\0') && (s[i] != c))
-	{
-		i++;
-	}
-	if (s[i] == c)
-		return ((char *) &s[i]);
+	while ((*s != '\0') && (*s != c))
+		s++;
+	if (*s == c)
+		return ((char *)s);
 	return ((char *) 0);
 }

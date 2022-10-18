@@ -6,13 +6,13 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:18:37 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/13 11:40:33 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/10/17 08:38:21 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	count;
 
