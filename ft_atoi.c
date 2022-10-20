@@ -6,7 +6,7 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:50:58 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/18 13:58:44 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:38:51 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_atoi(const char *str)
 	int	sign;
 	int	number;
 
-	sign = 0;
+	sign = 1;
 	number = 0;
 	while (ft_isspace(*str))
 		str++;
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(*str))
 	{
 		number = number * 10;
-		number = *str - '0';
+		number = number + *str - '0';
 		str++;
 	}
 	return (sign * number);
