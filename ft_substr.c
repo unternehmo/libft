@@ -6,30 +6,40 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 10:46:04 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/10/24 11:27:18 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/12/05 13:19:28 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static size_t	strnlen(const char *str, size_t n)
 {
-	size_t	i;
-	char	*s_cpy;
+	const char	*ptr;
 
-	i = 0;
-	if (!len || !s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		start = ft_strlen(s);
-	s_cpy = (char *) ft_calloc(len + 1, sizeof(char));
-	if (!s_cpy)
-		return (NULL);
-	while (len > 0 && s[start + i] != '\0')
+	ptr = str;
+	while (*ptr && n)
 	{
-		s_cpy[i] = s[start + i];
-		i++;
-		len--;
+		ptr++;
+		n--;
 	}
-	return (s_cpy);
+	return (ptr - str);
+}
+
+char	*ft_substr(char const *str, unsigned int start, size_t n)
+{
+	size_t	length;
+	char	*new_str;
+
+	if (!str)
+		return (NULL);
+	length = ft_strlen(str);
+	if (length < start)
+		start = length;
+	str += start;
+	n = strnlen(str, n);
+	new_str = (char *)ft_calloc(n + 1, sizeof(char));
+	if (!new_str)
+		return (NULL);
+	ft_memcpy(new_str, str, n);
+	return (new_str);
 }

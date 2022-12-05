@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 14:07:07 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/12/05 14:48:41 by tkubsch          ###   ########.fr       */
+/*   Created: 2022/11/30 14:48:59 by tkubsch           #+#    #+#             */
+/*   Updated: 2022/12/02 12:29:10 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned char	*p;
-	unsigned char	*foundchar;
+	struct s_list	*new_node;
 
-	foundchar = NULL;
-	p = (unsigned char *)s;
-	while (n--)
-	{
-		if (*p != (unsigned char)c)
-		{
-			p++;
-		}
-		else
-		{
-			foundchar = p;
-			break ;
-		}
-	}
-	return (foundchar);
+	new_node = NULL;
+	new_node = (struct s_list *)malloc(sizeof(struct s_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }

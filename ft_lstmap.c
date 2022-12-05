@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 14:07:07 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/12/05 14:48:41 by tkubsch          ###   ########.fr       */
+/*   Created: 2022/12/05 11:19:48 by tkubsch           #+#    #+#             */
+/*   Updated: 2022/12/05 14:51:41 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	unsigned char	*p;
-	unsigned char	*foundchar;
+	t_list	*temp;
+	t_list	*i;
 
-	foundchar = NULL;
-	p = (unsigned char *)s;
-	while (n--)
+	if (!(*f) || !lst)
+		return (NULL);
+	temp = ft_lstnew((*f)(lst->content));
+	i = NULL;
+	while (lst != NULL)
 	{
-		if (*p != (unsigned char)c)
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
 		{
-			p++;
+			ft_lstclear(&i, del);
+			return (NULL);
 		}
-		else
-		{
-			foundchar = p;
-			break ;
-		}
+		ft_lstadd_back(&i, temp);
+		lst = lst->next;
 	}
-	return (foundchar);
+	return (i);
 }
