@@ -6,7 +6,7 @@
 /*   By: tkubsch <tkubsch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:19:48 by tkubsch           #+#    #+#             */
-/*   Updated: 2022/12/05 14:51:41 by tkubsch          ###   ########.fr       */
+/*   Updated: 2022/12/17 13:21:11 by tkubsch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!(*f) || !lst)
 		return (NULL);
-	temp = ft_lstnew((*f)(lst->content));
 	i = NULL;
 	while (lst != NULL)
 	{
@@ -27,10 +26,12 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		if (!temp)
 		{
 			ft_lstclear(&i, del);
+			free(lst);
 			return (NULL);
 		}
 		ft_lstadd_back(&i, temp);
 		lst = lst->next;
 	}
+	free(lst);
 	return (i);
 }
